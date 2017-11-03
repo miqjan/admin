@@ -14,6 +14,7 @@ export const history = createHistory({
   
 const middleware = routerMiddleware(history);
 
+
 let array_middleware = [];
 array_middleware.push(thunk);
 array_middleware.push(middleware);
