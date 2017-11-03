@@ -1,0 +1,34 @@
+{
+  "name": "dummys-guide-to-redux-and-thunk-react",
+  "version": "1.0.0",
+  "description": "React Redux Thunk ",
+  "private": true,
+  "scripts": {
+    "build": "nwb build-react-app",
+    "clean": "nwb clean-app",
+    "start": "nwb serve-react-app"
+  },
+  "dependencies": {
+    "axios": "^0.17.0",
+    "history": "^4.7.2",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.8",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
+    "save": "^2.3.1"
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.2",
+    "babel-eslint": "^7.1.0",
+    "eslint": "^3.10.0",
+    "eslint-plugin-react": "^6.6.0",
+    "nwb": "0.12.x"
+  },
+  "author": "",
+  "license": "MIT",
+  "repository": ""
+}
