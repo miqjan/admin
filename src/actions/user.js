@@ -1,6 +1,6 @@
 import { USER_HAS_ERROR, GET_USER_START, GET_USER_END, USER_GET_SUCCESS } from '../constants';
 import axios from 'axios';
-import config from '../../config';
+import config from '../../config/index.json';
 
 
 axios.defaults.baseURL = config.api_url;

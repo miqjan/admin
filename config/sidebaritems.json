@@ -1,0 +1,18 @@
+{
+    "user":[ 
+        {
+            "sidebarItem":"Users",
+            "to":"users"
+        } 
+    ],
+    "admin":[ 
+        {
+            "sidebarItem":"Users",
+            "to":"users"
+        },
+        {
+            "sidebarItem":"Users",
+            "to":"users"
+        }
+    ]
+}

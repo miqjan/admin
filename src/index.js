@@ -12,7 +12,7 @@ const store = configureStore();
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Root />
+        <Root />
     </ConnectedRouter>
   </Provider>,
   document.getElementById('app')

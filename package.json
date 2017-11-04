@@ -1,12 +1,13 @@
 {
-  "name": "dummys-guide-to-redux-and-thunk-react",
+  "name": "slendavoradmin",
   "version": "1.0.0",
   "description": "React Redux Thunk ",
   "private": true,
   "scripts": {
     "build": "nwb build-react-app",
     "clean": "nwb clean-app",
-    "start": "nwb serve-react-app"
+    "start": "set NODE_ENV=development && webpack-dev-server --hot",
+    "startnwb": "nwb serve-react-app"
   },
   "dependencies": {
     "axios": "^0.17.0",
@@ -22,11 +23,32 @@
     "save": "^2.3.1"
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.2",
     "babel-eslint": "^7.1.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "eslint": "^3.10.0",
     "eslint-plugin-react": "^6.6.0",
-    "nwb": "0.12.x"
+    "html-webpack-plugin": "^2.30.1",
+    "nwb": "0.12.x",
+    "redux-devtools-extension": "^2.13.2",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4",
+    "babel-preset-env": "^1.6.0",
+    "css-loader": "^0.28.7",
+    "node-sass": "^4.5.3",
+    "postcss-color-function": "^4.0.0",
+    "postcss-custom-properties": "^6.1.0",
+    "postcss-loader": "^2.0.6",
+    "postcss-media-minmax": "^3.0.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "babel-core": "^6.26.0",
+    "webpack-merge": "^4.1.0",
+    "file-loader": "^1.1.5",
+    "postcss-import": "^11.0.0"
   },
   "author": "",
   "license": "MIT",

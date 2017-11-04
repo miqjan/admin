@@ -24,13 +24,9 @@ class Root extends Component {
   render() {
     return(
       <Switch>
-        <Redirect from="/login" to="/" />
-        <PublicRoute
-          path="/"
-          exact
-          component={Auth}
-        />
-        <PrivateRoute component={App} />
+        {/* <Redirect from="/login" to="/" /> */}
+        <PublicRoute path="/" exact component={Auth}/>
+        <PrivateRoute component={App} />{/*redirict to'/' when is not login*/}
       </Switch>
     );
   }

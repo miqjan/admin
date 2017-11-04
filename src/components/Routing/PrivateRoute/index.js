@@ -22,18 +22,18 @@ class PrivateRoute extends React.Component {
       <Route
         {...rest}
         render={(props) => {
-          if (!isLoggedIn()) {
-            return (
-              <Redirect
-                to={{
-                  pathname: '/',
-                }}
-              />
-            );
-          } else if (Component) {
-            return <Component {...props} />;
-          }
-          return render(props);
+            if (!isLoggedIn()) {
+                return (
+                <Redirect
+                    to={{
+                    pathname: '/',
+                    }}
+                />
+                );
+            } else if (Component) {
+                return <Component {...props} />;
+            }
+            return render(props);
         }}
       />
     );

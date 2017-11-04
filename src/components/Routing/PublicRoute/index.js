@@ -26,7 +26,7 @@ class PublicRoute extends React.Component {
             return (
               <Redirect
                 to={{
-                  pathname: '/home',
+                  pathname: '/gallery',
                 }}
               />
             );
