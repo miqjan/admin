@@ -6,12 +6,12 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 
 export const history = createHistory({
-    basename: '',             // The base URL of the app (see below)
-    forceRefresh: false,     // Set true to force full page refreshes
-    keyLength: 6,             // The length of location.key
-    getUserConfirmation: (message, callback) => callback(window.confirm(message))
-  });
-  
+  basename: '',
+  forceRefresh: false,
+  keyLength: 6,
+  getUserConfirmation: (message, callback) => callback(window.confirm(message))
+});
+
 const middleware = routerMiddleware(history);
 
 
@@ -20,17 +20,19 @@ array_middleware.push(thunk);
 array_middleware.push(middleware);
 
 function getcompose() {
-    if(process.env.NODE_ENV.trim() !== 'production'){
-        return composeWithDevTools(applyMiddleware(...array_middleware));
-    } else {
-        return applyMiddleware(...array_middleware);
-    }
+  if(process.env.NODE_ENV.trim() !== 'production'){
+    return composeWithDevTools(applyMiddleware(...array_middleware));
+  } else {
+    return applyMiddleware(...array_middleware);
+  }
 }
+
 const initialState = {};
+
 export default function configureStore() {
-    return createStore(
-        rootReducer,
-        initialState,
-        getcompose()
-    );
-}
+  return createStore(
+    rootReducer,
+    initialState,
+    getcompose()
+  );
+};
