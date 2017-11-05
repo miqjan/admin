@@ -7,15 +7,14 @@ class Sidebar extends React.Component{
     }
     
     render(){
-        console.log(this.props);
         return(
             <div className={styles.root}>
                 <div className={styles.menu}>
                     <ul>
                     {
                         this.props.items.map((item, key) => {
-                            
-                               ( <SidebarItem
+                           
+                            return   ( <SidebarItem
                                     to={item.to}
                                     key={key}
                                 >

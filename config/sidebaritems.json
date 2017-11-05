@@ -1,18 +1,54 @@
 {
-    "user":[ 
-        {
-            "sidebarItem":"Users",
-            "to":"users"
-        } 
+    "array":[
+        [ 
+            {
+                "sidebarItem":"Gallery",
+                "to":"gallery"
+            },
+            {
+                "sidebarItem":"ggggggggggggg",
+                "to":"uggggggggggser"
+            } 
+        ],
+        [ 
+            {
+                "sidebarItem":"Users",
+                "to":"user"
+            },
+            {
+                "sidebarItem":"Gallery",
+                "to":"gallery"
+            }
+        ]
     ],
-    "admin":[ 
+
+
+    "tableHead":[
+        "firstname",
+        "lastname",
+        "email"
+    ],
+    "tableBody": [
         {
-            "sidebarItem":"Users",
-            "to":"users"
+            "firstname":"Ando",
+            "lastname": "Hakobqoxyan",
+            "email":"ando.hak1998@gmail.com"
         },
         {
-            "sidebarItem":"Users",
-            "to":"users"
+            "firstname":"Ando",
+            "lastname": "Hakobqoxyan",
+            "email":"ando.hak1998@gmail.com"
+        },
+        {
+            "firstname":"Ando",
+            "lastname": "Hakobqoxyan",
+            "email":"ando.hak1998@gmail.com"
+        },
+        {
+            "firstname":"Ando",
+            "lastname": "Hakobqoxyan",
+            "email":"ando.hak1998@gmail.com"
         }
     ]
+
 }

@@ -3,7 +3,7 @@ import * as actionTypes from '../constants';
 const initialState = {
   token: window.localStorage.getItem('token'),
   loading: false,
-  isLogin: true,
+  isLogin: false,
   user: {},
   error: {},
 };
@@ -16,6 +16,8 @@ export function userReducer(state = initialState, action) {
       return Object.assign({}, state, { loading: true });
     case actionTypes.USER_GET_SUCCESS:
       return Object.assign({}, state, { user: action.user, isLogin: true });
+    case actionTypes.USER_SIGNIN_SUCCESS:
+      return Object.assign({}, state, { token: action.token});
     case actionTypes.USER_HAS_ERROR:
       return Object.assign({}, state, { error:action.error, isLogin: false });
     default:

@@ -9,15 +9,15 @@ import {
 } from 'react-router-dom';
 
 
-
+const role = 0;
 
 class AdminRoute extends React.Component {
     render() {
         const {
             component: Component,
             render,
+            componentprops,
             role,
-            sidebaritems,
             ...rest
         } = this.props;
 
@@ -25,6 +25,7 @@ class AdminRoute extends React.Component {
         <Route
             {...rest}
             render={(props) => {
+                props = Object.assign(props,componentprops);
                 if (role < 1) {
                     return (
                         <Redirect
@@ -34,12 +35,10 @@ class AdminRoute extends React.Component {
                         />
                     );
                 } else if (Component) {
-                return (
-                    <div>
-                        <Header/>
-                        <Sidebar items={sidebaritems}/>
-                        <Component {...props} />
-                    </div>
+                    return (
+                        <div>
+                            <Component {...props} />
+                        </div>
                     );
                 }
                 return render(props);
@@ -52,8 +51,7 @@ class AdminRoute extends React.Component {
 AdminRoute.PropTypes = {
     component: PropTypes.func,
     render: PropTypes.func,
-    role: PropTypes.number.isRequired,
-    sidebaritems: PropTypes.array
+    componentprops: PropTypes.object
 };
 
 AdminRoute.defaultProps = {

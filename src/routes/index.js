@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Switch } from 'react-router';
-import { userFetchData } from '../actions/user';
+
 
 
 import Auth from './auth';
@@ -18,7 +18,7 @@ import {
 
 class Root extends Component {
   componentWillMount() {
-    this.props.fetchData('user/issignin');
+   
   }
 
   render() {
@@ -32,10 +32,6 @@ class Root extends Component {
   }
 }
 
-Root.propTypes = {
-  fetchData: PropTypes.func.isRequired
-};
-
 const mapStateToProps = (state) => {
   return {
     user: state.userinfo.user,
@@ -47,7 +43,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (url) => { dispatch( userFetchData( url ) ) }
+    
   };
 };
 

@@ -1,52 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter,Route } from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import  AdminRoute  from '../../components/Routing/PrivateRoute/AdminRoute';
+import Root from './routes';
+import PropTypes from 'prop-types';
 import Header from '../../components/layout/Header';
 import Sidebar from '../../components/layout/Sidebar';
 import items from '../../../config/sidebaritems.json';
 
-class App extends Component {
-  render() {
-      console.log(items);
-    
-      return (
-        <div>
-            
-            <Route path="/gallery"  render={(props)=>(
-                <div>
-                <Header/>
-                <Sidebar items={items.user}/>
-                <div>vrffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-                    fffffffffffffffffffffffffffffffffffffff
-                    fffffffffffffffffffffffffffffffffffff
-                    ffffffffffffffffffffffffffffffffffffffff
-                    fffffffffffffffffff </div>
-                </div>
-            )}/>
+import AppContent from '../../continers/AppContent';
+import { userFetchData } from '../../actions/user';
 
-            <AdminRoute path="/user"  role={2}  sidebaritems={items.admin} component={Header} />
-            <Route  render={(props)=>(
-                <div>
-                not found
-                </div>
-            )}/>
-        </div>
-    );
-  }
+
+
+class App extends Component {
+    componentWillMount(){
+        this.props.fetchData('user/issignin');
+    }
+    render() {
+        
+        if(!this.props.loading){
+            return <div>Loading...</div>;
+        }
+        console.log(this.props.role);
+        return (
+            <div >
+                <Header/>
+                <Sidebar items={items.array[this.props.role]} />
+                <AppContent>
+                    <Root role={this.props.role}/>
+                </AppContent>
+            </div>
+        );
+    }
 }
 
 App.PropTypes = {
-
+    fetchData : PropTypes.func.isRequired,
+    role : PropTypes.number
 };
 
 const mapStateToProps = (state) => {
-  return {};
+    return {
+        loading: state.userinfo.loading,
+        role: state.userinfo.user.type
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+    return {
+        fetchData: (url) => { dispatch ( userFetchData( url ) ) }
+    };
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

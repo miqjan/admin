@@ -1,4 +1,4 @@
-import { USER_HAS_ERROR, GET_USER_START, GET_USER_END, USER_GET_SUCCESS } from '../constants';
+import { USER_HAS_ERROR, GET_USER_START, GET_USER_END, USER_GET_SUCCESS , USER_SIGNIN_SUCCESS } from '../constants';
 import axios from 'axios';
 import config from '../../config/index.json';
 
@@ -32,7 +32,15 @@ export function getUserSuccess(user) {
     user,
   };
 }
-
+export function gerSigninSuccess(token)
+{
+    console.log(token);
+    window.localStorage.setItem('token', token.token);
+    return{
+        type: USER_SIGNIN_SUCCESS,
+        token: token.token
+    };
+}
 
 export function userFetchData(url) {
   return async (dispatch) => {
@@ -41,11 +49,12 @@ export function userFetchData(url) {
       let res = await axios.get(url);
       dispatch(getUserSuccess(res.data));
     } catch (error) {
-      dispatch(getUserHasError({
-        status_text: error.response.statusText,
-        data: error.response.data.error,
-        status: error.response.status,
-      }));
+        console.log(error);
+        dispatch(getUserHasError({
+            status_text: error.response.statusText,
+            data: error.response.data.error,
+            status: error.response.status,
+        }));
     } finally {
       dispatch(getUserEnd());
     }
@@ -57,8 +66,10 @@ export function UserLoginFetchData(url,email,password) {
     try {
       dispatch(getUserStart());
       let res = await axios.post(url, {email: email,password: password});
-      dispatch(getUserSuccess(data));
-      window.localStorage.setItem('token', data.token);
+      console.log(res);
+      dispatch(gerSigninSuccess(res.data));
+      
+      
     } catch (error) {
       dispatch(getUserHasError({
         status_text: error.response.statusText,

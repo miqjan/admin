@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'react-router-redux'
 
 import configureStore, { history } from './store/configureStore';
 import Root from './routes';
-
+import '../public/css/index.scss';
 const store = configureStore();
 
 
