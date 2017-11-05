@@ -1,10 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import {
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import styles from './components.pcss';
 
@@ -12,7 +7,8 @@ import styles from './components.pcss';
 
 class HeaderMenu extends React.Component {
   onLogout = () => {
-    window.localStorage.removeItem('token');
+    window.localStorage.clear();
+    this.props.history.push('/');
   };
 
   render(){
@@ -30,4 +26,4 @@ class HeaderMenu extends React.Component {
   }
 }
 
-export default connect()(HeaderMenu);
+export default withRouter(HeaderMenu);

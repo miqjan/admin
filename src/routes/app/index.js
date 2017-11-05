@@ -12,8 +12,21 @@ import AppContent from '../../continers/AppContent';
 import { userFetchData } from '../../actions/user';
 
 
+import * as acl from '../../utils/acl';
 
 class App extends Component {
+  sidebarItems = [
+    {
+      name: 'Gallery',
+      to: 'gallery',
+      access: true,
+    },
+    {
+      name: 'Users',
+      to: 'user',
+      access: acl.canViewUsers()
+    },
+  ];
   componentWillMount() {
     this.props.fetchData('user/issignin');
   }
@@ -23,10 +36,12 @@ class App extends Component {
       return <div>Loading...</div>;
     }
 
+    const sidebarItems = this.sidebarItems.filter(i => i.access);
+
     return (
       <div >
         <Header/>
-        <Sidebar items={items.array[this.props.role]} />
+        <Sidebar items={sidebarItems} />
         <AppContent>
           <Root role={this.props.role} />
         </AppContent>

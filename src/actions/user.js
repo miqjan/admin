@@ -2,6 +2,8 @@ import { USER_HAS_ERROR, GET_USER_START, GET_USER_END, USER_GET_SUCCESS , USER_S
 import axios from 'axios';
 import config from '../../config/index.json';
 
+import { push } from 'react-router-redux';
+
 
 axios.defaults.baseURL = config.api_url;
 axios.defaults.headers.common['Authorization'] = window.localStorage.getItem('token');
@@ -34,12 +36,15 @@ export function getUserSuccess(user) {
 }
 export function gerSigninSuccess(token)
 {
-    console.log(token);
-    window.localStorage.setItem('token', token.token);
-    return{
-        type: USER_SIGNIN_SUCCESS,
-        token: token.token
-    };
+  window.localStorage.setItem('token', token.token);
+  return (dispatch) => {
+    dispatch({
+      type: USER_SIGNIN_SUCCESS,
+      token: token.token
+    });
+
+    dispatch(push('/gallery'));
+  };
 }
 
 export function userFetchData(url) {
@@ -49,12 +54,12 @@ export function userFetchData(url) {
       let res = await axios.get(url);
       dispatch(getUserSuccess(res.data));
     } catch (error) {
-        console.log(error);
-        dispatch(getUserHasError({
-            status_text: error.response.statusText,
-            data: error.response.data.error,
-            status: error.response.status,
-        }));
+      console.log(error);
+      dispatch(getUserHasError({
+        status_text: error.response.statusText,
+        data: error.response.data.error,
+        status: error.response.status,
+      }));
     } finally {
       dispatch(getUserEnd());
     }
@@ -66,10 +71,7 @@ export function UserLoginFetchData(url,email,password) {
     try {
       dispatch(getUserStart());
       let res = await axios.post(url, {email: email,password: password});
-      console.log(res);
       dispatch(gerSigninSuccess(res.data));
-      
-      
     } catch (error) {
       dispatch(getUserHasError({
         status_text: error.response.statusText,

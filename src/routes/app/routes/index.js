@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import Table from '../../../components/ui/Table';
-import  AdminRoute  from '../../../components/Routing/PrivateRoute/AdminRoute';
 import { Switch } from 'react-router';
-import { Route } from 'react-router-dom';
-import items from '../../../../config/sidebaritems.json';
-import { withRouter} from 'react-router-dom';
-
+import { withRouter } from 'react-router-dom';
 
 import {
-  PrivateRoute
+  PrivateRoute,
+  AppRoute
 } from '../../../components/Routing';
+import AdminRoute  from '../../../components/Routing/PrivateRoute/AdminRoute';
+
+import Table from '../../../components/ui/Table';
+
+import items from '../../../../config/sidebaritems.json';
+
+import * as acl from '../../../utils/acl';
 
 class Root extends Component {
   render() {
@@ -21,6 +24,11 @@ class Root extends Component {
           </div>
         )}/>
 
+        <AppRoute
+          path="/user"
+          component={Table}
+          permission={acl.canViewUsers()}
+        />
         <AdminRoute
           path="/user"
           role={this.props.role}
