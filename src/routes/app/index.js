@@ -14,43 +14,43 @@ import { userFetchData } from '../../actions/user';
 
 
 class App extends Component {
-    componentWillMount(){
-        this.props.fetchData('user/issignin');
+  componentWillMount() {
+    this.props.fetchData('user/issignin');
+  }
+
+  render() {
+    if(!this.props.loading){
+      return <div>Loading...</div>;
     }
-    render() {
-        
-        if(!this.props.loading){
-            return <div>Loading...</div>;
-        }
-        console.log(this.props.role);
-        return (
-            <div >
-                <Header/>
-                <Sidebar items={items.array[this.props.role]} />
-                <AppContent>
-                    <Root role={this.props.role}/>
-                </AppContent>
-            </div>
-        );
-    }
+
+    return (
+      <div >
+        <Header/>
+        <Sidebar items={items.array[this.props.role]} />
+        <AppContent>
+          <Root role={this.props.role} />
+        </AppContent>
+      </div>
+    );
+  }
 }
 
 App.PropTypes = {
-    fetchData : PropTypes.func.isRequired,
-    role : PropTypes.number
+  fetchData : PropTypes.func.isRequired,
+  role : PropTypes.number
 };
 
 const mapStateToProps = (state) => {
-    return {
-        loading: state.userinfo.loading,
-        role: state.userinfo.user.type
-    };
+  return {
+    loading: state.userinfo.loading,
+    role: state.userinfo.user.type
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchData: (url) => { dispatch ( userFetchData( url ) ) }
-    };
+  return {
+    fetchData: (url) => { dispatch ( userFetchData( url ) ) }
+  };
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
