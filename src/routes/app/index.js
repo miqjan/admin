@@ -10,55 +10,46 @@ import items from '../../../config/sidebaritems.json';
 
 import AppContent from '../../continers/AppContent';
 import { userFetchData } from '../../actions/user';
-
+import sidebarItems from '../../../config/sidebaritems.json';
 
 import * as acl from '../../utils/acl';
 
 class App extends Component {
-  sidebarItems = [
-    {
-      name: 'Gallery',
-      to: 'gallery',
-      access: true,
-    },
-    {
-      name: 'Users',
-      to: 'user',
-      access: acl.canViewUsers()
-    },
-  ];
-  componentWillMount() {
-    this.props.fetchData('user/issignin');
-  }
-
-  render() {
-    if(!this.props.loading){
-      return <div>Loading...</div>;
+    constructor(props){
+        super(props)
     }
-
-    const sidebarItems = this.sidebarItems.filter(i => i.access);
-
-    return (
-      <div >
-        <Header/>
-        <Sidebar items={sidebarItems} />
-        <AppContent>
-          <Root role={this.props.role} />
-        </AppContent>
-      </div>
-    );
-  }
+    componentWillMount() {
+        this.props.fetchData('user/issignin');
+    }
+    render(){
+        if(this.props.loading_){   // loading not work becouse call fetchData brfore end 
+            return (
+                <div >
+                    <Header name={this.props.name}/>
+                    <Sidebar items={sidebarItems.array[this.props.role]} />
+                    <AppContent>
+                    <Root role={this.props.role} />
+                    </AppContent>
+                </div>
+            );
+            
+        }
+        return <div>Loading...</div>;
+    }
 }
 
 App.PropTypes = {
-  fetchData : PropTypes.func.isRequired,
-  role : PropTypes.number
+    fetchData : PropTypes.func.isRequired,
+    role : PropTypes.number
 };
 
+  
 const mapStateToProps = (state) => {
   return {
-    loading: state.userinfo.loading,
-    role: state.userinfo.user.type
+    loading_: state.userinfo.loading_,
+    loadinglogin: state.userinfo.loading,
+    role: state.userinfo.user.type,
+    name : state.userinfo.user.firstname
   };
 };
 

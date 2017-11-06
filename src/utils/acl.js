@@ -32,7 +32,7 @@ const hasPerm = (perm) => {
 
 
 export const canViewUsers = () => {
-    console.log(hasPerm('view_users'));
+    
     return hasPerm('view_users');
 
 };

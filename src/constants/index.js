@@ -3,3 +3,7 @@ export const GET_USER_START = "GET_USER_START";
 export const GET_USER_END = "GET_USER_END";
 export const USER_GET_SUCCESS = "USER_GET_SUCCESS";
 export const USER_SIGNIN_SUCCESS = 'USER_SIGNIN_SUCCESS';
+export const LOGIN_USER_START = 'LOGIN_USER_START';
+export const LOGIN_USER_END = 'LOGIN_USER_END';
+
+

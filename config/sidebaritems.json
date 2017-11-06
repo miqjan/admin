@@ -2,21 +2,21 @@
   "array":[
     [
       {
-        "sidebarItem":"Gallery",
+        "name":"Gallery",
         "to":"gallery"
       },
       {
-        "sidebarItem":"ggggggggggggg",
+        "name":"ggggggggggggg",
         "to":"uggggggggggser"
       }
     ],
     [
       {
-        "sidebarItem":"Users",
+        "name":"Users",
         "to":"user"
       },
       {
-        "sidebarItem":"Gallery",
+        "name":"Gallery",
         "to":"gallery"
       }
     ]
