@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { UserLoginFetchData } from '../../actions/user';
 import { push } from 'react-router-redux';
 import { withRouter } from 'react-router-dom';
+import _ from 'lodash';
 
 
 class Auth extends Component {
@@ -16,14 +17,17 @@ class Auth extends Component {
   };
 
   render() {
+    let msg = _.isEmpty(this.props.error)? '' : this.props.error.data;
     return (
-      <div>
         <div>
-          <input type='text' name='email' onChange={this.handleChange}/>
-          <input type='password' name='password' onChange={this.handleChange}/>
-          <button type="button" className="btn btn-xs btn-primary" onClick={this.handleButtonClick}>Login</button>
+            {msg}
+            <div>
+                <input type='text' name='email' onChange={this.handleChange}/>
+                <input type='password' name='password' onChange={this.handleChange}/>
+                <button type="button" className="btn btn-xs btn-primary" 
+                onClick={this.handleButtonClick}>Login</button>
+            </div>
         </div>
-      </div>
     );
   }
 }

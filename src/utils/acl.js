@@ -19,18 +19,20 @@ export const roles = [
 ];
 
 export const userRole = () => {
-  return localStorage.getItem('role') || 'user';
+    return localStorage.getItem('role') || 'user';
 };
 
 const hasPerm = (perm) => {
-  const data = find(roles, (item) => {
-    return item.name === userRole();
-  });
-  return data.permissions.indexOf(perm) !== -1;
+    const data = find(roles, (item) => {
+        return item.name === userRole();
+    });
+    return data.permissions.indexOf(perm) !== -1;
 };
 
 
 
 export const canViewUsers = () => {
-  return hasPerm('view_users');
+    console.log(hasPerm('view_users'));
+    return hasPerm('view_users');
+
 };

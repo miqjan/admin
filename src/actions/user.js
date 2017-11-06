@@ -6,7 +6,7 @@ import { push } from 'react-router-redux';
 
 
 axios.defaults.baseURL = config.api_url;
-axios.defaults.headers.common['Authorization'] = window.localStorage.getItem('token');
+
 
 
 export function getUserHasError(error) {
@@ -29,10 +29,11 @@ export function getUserEnd() {
 }
 
 export function getUserSuccess(user) {
-  return {
-    type: USER_GET_SUCCESS,
-    user,
-  };
+    window.localStorage.setItem('role',getRoleNamebyType(user.type))
+    return {
+        type: USER_GET_SUCCESS,
+        user,
+    };
 }
 export function gerSigninSuccess(token)
 {
@@ -51,7 +52,7 @@ export function userFetchData(url) {
   return async (dispatch) => {
     dispatch(getUserStart());
     try {
-      let res = await axios.get(url);
+      let res = await axios.get(url,{headers: {'Authorization': window.localStorage.getItem('token')}});
       dispatch(getUserSuccess(res.data));
     } catch (error) {
       console.log(error);
@@ -70,7 +71,7 @@ export function UserLoginFetchData(url,email,password) {
   return async (dispatch) => {
     try {
       dispatch(getUserStart());
-      let res = await axios.post(url, {email: email,password: password});
+      let res = await axios.post(url, {email: email,password: password},{headers: {'Authorization': window.localStorage.getItem('token')}});
       dispatch(gerSigninSuccess(res.data));
     } catch (error) {
       dispatch(getUserHasError({
@@ -82,4 +83,14 @@ export function UserLoginFetchData(url,email,password) {
       dispatch(getUserEnd());
     }
   };
+}
+const getRoleNamebyType = (type = 0) =>{
+    switch (type) {
+        case 0:
+            return 'user';
+        case 1:
+            return 'superadmin';
+        default:
+            return 'user';
+    }
 }
