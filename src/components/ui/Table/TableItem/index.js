@@ -10,21 +10,32 @@ class TableItem extends React.Component {
         return (
             <tbody className={styles.root}>
                 {
+                    
                     this.props.tableBody.map((item,key)=>{
+                        
                         return(
                             <tr key={key}>
-                                <td>
-                                    <Input
-                                        tableItem
-                                        readOnly={true}
-                                        value={item.firstName}
-                                        onChange={this.props.onChange.bind(this, key)}
-                                        type="text"
-                                        name="firstName"
-                                    />
-                                </td>
-                                <td>{item.lastName}</td>
-                                <td>{item.email}</td>
+                                
+                                    {Object.keys(item).map((itemKey,index)=>{
+                                       
+                                        return(
+                                            <td key={index}>
+                                                <Input
+                                                    tableItem
+                                                    readOnly={true}
+                                                    value={item[itemKey]}
+                                                    onChange={this.props.onChange.bind(this, key)}
+                                                    type="text"
+                                                    name={itemKey}
+                                                />
+
+                                            </td>
+
+                                        );  
+                                    })}
+                                    
+                                
+                                
                             </tr>
                         );
                     })

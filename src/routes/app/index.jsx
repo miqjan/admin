@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter} from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import Root from './routes';
+import Root from './routes/index.jsx';
 import PropTypes from 'prop-types';
 import Header from '../../components/layout/Header';
 import Sidebar from '../../components/layout/Sidebar';
