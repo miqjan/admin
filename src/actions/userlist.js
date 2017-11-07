@@ -22,35 +22,35 @@ axios.defaults.baseURL = config.api_url;
 export function getUserHasError(error) {
     return {
         type: USER_HAS_ERROR,
-        error,
+        error
     };
 }
 
 export function getUserStartLogin() {
     return {
-        type: LOGIN_USER_START,
+        type: LOGIN_USER_START
     };
 }
 export function getUserStart() {
     return {
-        type: GET_USER_START,
+        type: GET_USER_START
     };
 }
 export function getUserEnd() {
     return {
-        type: GET_USER_END,
+        type: GET_USER_END
     };
 }
 export function getUserEndLogin() {
     return {
-        type: LOGIN_USER_END,
+        type: LOGIN_USER_END
     };
 }
 export function getUserSuccess(user) {
     window.localStorage.setItem('role', getRoleNamebyType(user.type))
     return {
         type: USER_GET_SUCCESS,
-        user,
+        user
     };
 }
 export function gerSigninSuccess(token) {
@@ -80,7 +80,7 @@ export function userFetchData(url) {
             dispatch(getUserHasError({
                 status_text: error.response.statusText,
                 data: error.response.data.error,
-                status: error.response.status,
+                status: error.response.status
             }));
         } finally {
             dispatch(getUserEnd());
