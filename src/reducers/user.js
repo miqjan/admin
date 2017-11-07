@@ -1,4 +1,4 @@
-import * as actionTypes from '../constants';
+import * as actionTypes from '../constants/user';
 
 const initialState = {
     token: window.localStorage.getItem('token'),

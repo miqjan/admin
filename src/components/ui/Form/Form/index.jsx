@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './components.pcss';
 
@@ -10,6 +11,9 @@ class Form extends React.Component {
 			</form>
 		);
 	}
+}
+Form.propTypes = {
+	children: PropTypes.any.isRequired
 }
 
 export default Form;

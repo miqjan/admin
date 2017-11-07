@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './components.pcss';
-import { Input } from '../../Form';
+import { Input } from '../../../components/ui/Form';
 
 class TableItem extends React.Component {
     render() {

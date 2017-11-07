@@ -1,94 +1,89 @@
 import {
-    USER_HAS_ERROR,
-    GET_USER_START,
-    GET_USER_END,
-    USER_GET_SUCCESS,
-    USER_SIGNIN_SUCCESS,
-    LOGIN_USER_START,
-    LOGIN_USER_END
-} from '../constants';
+    ADD_ALL_USERS,
+    ADD_USER,
+    EDIT_USER,
+    REMOVE_USER,
+    USERS_LOADED,
+    HAS_ERROR
+} from '../constants/userlist';
 import axios from 'axios';
 import config from '../../config/index.json';
-
-import {
-    push
-} from 'react-router-redux';
-
-
+import { push } from 'react-router-redux';
 axios.defaults.baseURL = config.api_url;
 
-
-
-export function getUserHasError(error) {
+export function addAllUsers(users) {
     return {
-        type: USER_HAS_ERROR,
+        type: ADD_ALL_USERS,
+        users
+    };
+}
+
+export function addUser(user) {
+    return {
+        type: ADD_USER,
+        user
+    };
+}
+export function EditUser(user) {
+    return {
+        type: EDIT_USER,
+        user
+    };
+}
+export function reMoveUser(user) {
+    return {
+        type: REMOVE_USER,
+        user
+    };
+}
+export function allUserLoaded(bool) {
+    return {
+        type: USERS_LOADED,
+        bool
+    };
+}
+
+export function somFatchHasError(error) {
+    return {
+        type: HAS_ERROR,
         error
     };
 }
 
-export function getUserStartLogin() {
-    return {
-        type: LOGIN_USER_START
-    };
-}
-export function getUserStart() {
-    return {
-        type: GET_USER_START
-    };
-}
-export function getUserEnd() {
-    return {
-        type: GET_USER_END
-    };
-}
-export function getUserEndLogin() {
-    return {
-        type: LOGIN_USER_END
-    };
-}
-export function getUserSuccess(user) {
-    window.localStorage.setItem('role', getRoleNamebyType(user.type))
-    return {
-        type: USER_GET_SUCCESS,
-        user
-    };
-}
-export function gerSigninSuccess(token) {
-    window.localStorage.setItem('token', token.token);
-    return (dispatch) => {
-        dispatch({
-            type: USER_SIGNIN_SUCCESS,
-            token: token.token
-        });
-
-        dispatch(push('/gallery'));
-    };
-}
-
-export function userFetchData(url) {
+export function allUserFetchGet() {
     return async(dispatch) => {
-        dispatch(getUserStart());
+        dispatch(allUserLoaded(false));
         try {
-            let res = await axios.get(url, {
+            const res = await axios.get('user/all/any', {
                 headers: {
                     'Authorization': window.localStorage.getItem('token')
                 }
             });
-            dispatch(getUserSuccess(res.data));
+            dispatch(addAllUsers(res.data));
         } catch (error) {
 
-            dispatch(getUserHasError({
-                status_text: error.response.statusText,
-                data: error.response.data.error,
-                status: error.response.status
-            }));
+            dispatch(somFatchHasError(error));
         } finally {
-            dispatch(getUserEnd());
+            dispatch(allUserLoaded(true));
         }
     };
 }
-
-export function UserLoginFetchData(url, email, password) {
+export function addUserFetch(user) {
+    return async(dispatch) => {
+        try {
+            const res = await axios.post('/insert', user, {
+                headers: {
+                    'Authorization': window.localStorage.getItem('token')
+                }
+            });
+            user._id = res.data._id
+            dispatch(addUser(res.data));
+        } catch (error) {
+            dispatch(somFatchHasError(error));
+        } 
+    };
+}
+export function UserEditFetch(url, email, password) {
     return async(dispatch) => {
         try {
             dispatch(getUserStartLogin());
@@ -111,14 +106,4 @@ export function UserLoginFetchData(url, email, password) {
             dispatch(getUserEndLogin());
         }
     };
-}
-const getRoleNamebyType = (type = 0) => {
-    switch (type) {
-        case 0:
-            return 'user';
-        case 1:
-            return 'superadmin';
-        default:
-            return 'user';
-    }
 }

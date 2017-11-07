@@ -8,7 +8,7 @@ import {
 } from '../../../components/Routing';
 import AdminRoute from '../../../components/Routing/PrivateRoute/AdminRoute';
 
-import Table from '../../../components/ui/Table';
+import Table from '../../../continers/Table';
 
 import items from '../../../../config/sidebaritems.json';
 
