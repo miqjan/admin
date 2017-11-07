@@ -26,9 +26,9 @@ class App extends Component {
             return (
                 <div >
                     <Header name={this.props.name}/>
-                    <Sidebar items={sidebarItems.array[this.props.role]} />
+                        <Sidebar items={sidebarItems.array[this.props.role]} />
                     <AppContent>
-                    <Root role={this.props.role} />
+                        <Root role={this.props.role} />
                     </AppContent>
                 </div>
             );

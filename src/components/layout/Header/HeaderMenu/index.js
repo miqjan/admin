@@ -15,11 +15,11 @@ class HeaderMenu extends React.Component {
     return(
       <div className={styles.root}>
         <ul>
-          <li><img src={''} alt="Avatar"/></li>
+          <li><img src={''} alt="Admin"/></li>
+          <li>{this.props.adminName}</li>
           <li>
             <button type="button" onClick={this.onLogout}>Log Out</button>
           </li>
-          <li>{this.props.adminName}</li>
         </ul>
       </div>
     )
