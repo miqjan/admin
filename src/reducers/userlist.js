@@ -20,8 +20,8 @@ export function userlistReducer(state = initialState, action) {
                 users: action.users
             });
         case ADD_USER:
-            return Object.assign({}, state, {
-                users: action.user
+            return Object.assign({},state,{
+                users:[...state.users,action.user.user]
             });
         case HAS_ERROR:
             return Object.assign({}, state, {

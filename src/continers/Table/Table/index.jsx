@@ -12,7 +12,7 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import _ from 'lodash';
 
-import { allUserFetchGet } from '../../../actions/userlist';
+import { allUserFetchGet, addUserFetch } from '../../../actions/userlist';
 
 class Table extends React.Component {
     componentWillMount(){
@@ -22,7 +22,6 @@ class Table extends React.Component {
                 "lastName": "",
                 "email":"",
                 "phone":"",
-                "address":"",
                 "type":"",
                 "password":"",
                 "c_password":""
@@ -39,7 +38,6 @@ class Table extends React.Component {
         "Last Name",
         "E-mail",
         "Phone",
-        "Address",
         "Type",
         "Password",
         "Cnfirm Password"
@@ -53,6 +51,9 @@ class Table extends React.Component {
         const { tableBody } = this.state;
 
         tableBody[key][name] = value;
+
+
+        
 
         this.setState({
             tableBody
@@ -77,18 +78,13 @@ class Table extends React.Component {
             form
         } = this.state;
         const CopyForm = _.clone(form);
-        const password = CopyForm.password;
-        delete CopyForm.password;
         delete CopyForm.c_password;
-        tableBody.push(CopyForm);
+       
+        this.props.addUserFetch(CopyForm);
         for(let key in form){
             form[key] = '';
         }
-        this.setState({
-            tableBody,
-            form
-        })
-
+        this.setState({form})
     }
 
     render() {
@@ -112,8 +108,7 @@ class Table extends React.Component {
                     </MuiThemeProvider>
                 </Form>
                 <table>
-                
-                    <TableHead tableHead={this.tableHead.slice(0,-2).concat("Removed")} />
+                    <TableHead tableHead={this.tableHead.slice(0,-3).concat("Status","Type","Removed")} />
                     <TableItem onChange={this.handleChange} tableBody={this.state.tableBody} />
                 </table>
             </div>
@@ -131,7 +126,8 @@ const mapStateToProps = (state) => {
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchDataAllUsers: () =>  dispatch ( allUserFetchGet() )
+        fetchDataAllUsers: () =>  dispatch ( allUserFetchGet() ),
+        addUserFetch: (user) =>  dispatch ( addUserFetch(user) )
     };
 };
 
@@ -139,6 +135,8 @@ Table.propTypes = {
     isloaded: PropTypes.bool.isRequired,
     error: PropTypes.object.isRequired,
     users: PropTypes.array,
-    fetchDataAllUsers : PropTypes.func
+    fetchDataAllUsers : PropTypes.func,
+    addUserFetch: PropTypes.func,
+    usersLength: PropTypes.number
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Table);

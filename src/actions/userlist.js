@@ -71,12 +71,12 @@ export function allUserFetchGet() {
 export function addUserFetch(user) {
     return async(dispatch) => {
         try {
-            const res = await axios.post('/insert', user, {
+            const res = await axios.post('/user/insert', user, {
                 headers: {
                     'Authorization': window.localStorage.getItem('token')
                 }
             });
-            user._id = res.data._id
+            //user._id = res.data._id
             dispatch(addUser(res.data));
         } catch (error) {
             dispatch(somFatchHasError(error));
