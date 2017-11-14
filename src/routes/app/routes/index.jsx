@@ -30,12 +30,12 @@ class Root extends Component {
                     component={Table}
                     permission={acl.canViewUsers()}
                 />
-                {/* <AdminRoute
-                    path="/user"
-                    role={this.props.role}
-                    componentprops={{tableHead: items.tableHead, tableBody: items.tableBody}}
+                <AppRoute
+                    path="/temp"
+                    permission={acl.canViewUsers()}
+                   // componentprops={{tableHead: items.tableHead, tableBody: items.tableBody}}
                     component={Table}
-                /> */}
+                />
                 <PrivateRoute render={(props) => (
                     <div>
                         not found

@@ -54,9 +54,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchData: (url) => { dispatch ( userFetchData( url ) ) }
-  };
+    return {
+        fetchData: (url) => { dispatch ( userFetchData( url ) ) }
+    };
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

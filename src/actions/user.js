@@ -51,14 +51,13 @@ export function getUserSuccess(user) {
         user
     };
 }
-export function gerSigninSuccess(token) {
+export function getSigninSuccess(token) {
     window.localStorage.setItem('token', token.token);
     return (dispatch) => {
         dispatch({
             type: USER_SIGNIN_SUCCESS,
             token: token.token
         });
-
         dispatch(push('/gallery'));
     };
 }
@@ -98,7 +97,7 @@ export function UserLoginFetchData(url, email, password) {
                     'Authorization': window.localStorage.getItem('token')
                 }
             });
-            dispatch(gerSigninSuccess(res.data));
+            dispatch(getSigninSuccess(res.data));
         } catch (error) {
             dispatch(getUserHasError({
                 status_text: error.response.statusText,

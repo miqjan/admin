@@ -18,6 +18,10 @@
       {
         "name":"Gallery",
         "to":"gallery"
+      },
+      {
+        "name":"Temp",
+        "to":"temp"
       }
     ]
   ],

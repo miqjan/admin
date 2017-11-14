@@ -95,7 +95,7 @@ export function UserEditFetch(url, email, password) {
                     'Authorization': window.localStorage.getItem('token')
                 }
             });
-            dispatch(gerSigninSuccess(res.data));
+            dispatch(getSigninSuccess(res.data));
         } catch (error) {
             dispatch(getUserHasError({
                 status_text: error.response.statusText,

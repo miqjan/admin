@@ -66,7 +66,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         UserFetchData: (url,email,password) => dispatch(UserLoginFetchData(url,email,password)),
-        goto: (url) => dispatch( push( url ) )
+       
     };
 };
 

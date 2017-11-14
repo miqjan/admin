@@ -11,12 +11,12 @@ import {
 
 
 class Root extends Component {
-	render() {
-		return(
-			<Switch>
-				<PublicRoute path="/" exact component={Auth}/>
-				<PrivateRoute component={App} />{/*redirict to'/' when is not login*/}
-			</Switch>
+    render() {
+        return(
+        <Switch>
+            <PublicRoute path="/" exact component={Auth} />
+		    <PrivateRoute component={App} />{/*redirict to'/' when is not login*/}
+		</Switch>
 		);
 	}
 }

@@ -15,7 +15,8 @@ import _ from 'lodash';
 import { allUserFetchGet, addUserFetch } from '../../../actions/userlist';
 
 class Table extends React.Component {
-    componentWillMount(){
+    constructor(props){
+        super(props);
         this.state = {
             form: {
                 "firstName":"",
@@ -28,6 +29,8 @@ class Table extends React.Component {
             },
             tableBody: []   
         };
+    }
+    componentWillMount(){
         this.props.fetchDataAllUsers()
     }
     componentWillReceiveProps(nextprop){
@@ -51,26 +54,17 @@ class Table extends React.Component {
         const { tableBody } = this.state;
 
         tableBody[key][name] = value;
-
-
-        
-
         this.setState({
             tableBody
         });
-
     };
     newRowText = (name, event) => {
         const { value } = event.target;
-
         const { form } = this.state;
-
         form[name] = value;
-
         this.setState({
             form
         });
-
     }
     addRow = () => {
         const { 
@@ -79,7 +73,6 @@ class Table extends React.Component {
         } = this.state;
         const CopyForm = _.clone(form);
         delete CopyForm.c_password;
-       
         this.props.addUserFetch(CopyForm);
         for(let key in form){
             form[key] = '';

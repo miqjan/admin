@@ -10,7 +10,7 @@ const outputPath = path.resolve(__dirname, 'static');
 
 const config = {
     entry: ['babel-polyfill',
-        path.join(srcPath, 'index.js'),
+        path.join(srcPath, 'index.jsx'),
     ],
 
     output: {
