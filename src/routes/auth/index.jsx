@@ -5,6 +5,7 @@ import { UserLoginFetchData } from '../../actions/user';
 import { push } from 'react-router-redux';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
+import styles from './components.pcss';
 
 
 class Auth extends Component {
@@ -34,14 +35,21 @@ class Auth extends Component {
     render() {
         
         return (
-            <div>
+            <div className={styles.root}>
+                
+                <div className={styles.formBlock}>
                 <label>{this.state.error}</label>
                 
-                <div>
-                    <input type='text' name='email' onChange={this.handleChange}/>
-                    <input type='password' name='password' onChange={this.handleChange}/>
-                    <button type="button" className="btn btn-xs btn-primary" 
-                    onClick={this.handleButtonClick}>Login</button>
+                    <div className={styles.formGroup}>
+                        <input type='text' name='email' onChange={this.handleChange}/>
+                    </div>
+                    <div className={styles.formGroup}>
+                        <input type='password' name='password' onChange={this.handleChange}/>
+                    </div>
+                    <div className={styles.formBtn}>
+                        <button type="button" className="btn btn-xs btn-primary" 
+                        onClick={this.handleButtonClick}>Login</button>
+                    </div>
                 </div>
             </div>
         );
