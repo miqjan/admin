@@ -9,10 +9,13 @@ import {
 } from './user';
 import {
     userlistReducer
-} from './userlist'
-
+} from './userlist';
+import {
+    teamReducer
+} from './team';
 export default combineReducers({
     router: routerReducer,
     userinfo: userReducer,
-    userlist: userlistReducer
+    userlist: userlistReducer,
+    team: teamReducer
 });

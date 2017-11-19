@@ -1,0 +1,2 @@
+export const TEAM_HAS_ERROR = 'TEAM_HAS_ERROR';
+export const TEAM_GET_SUCCESS = 'TEAM_GET_SUCCESS';

@@ -84,7 +84,7 @@ const config = {
                 loader: 'json-loader'
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
+                test: /\.(jpe?g|png|gif|svg|css)$/i,
                 loader: 'url-loader',
                 query: {
                     name: '[name].[hash].[ext]',

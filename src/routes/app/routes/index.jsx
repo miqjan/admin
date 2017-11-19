@@ -9,6 +9,8 @@ import {
 import AdminRoute from '../../../components/Routing/PrivateRoute/AdminRoute';
 
 import Table from '../../../continers/Table';
+import Temp from '../../../continers/ui/Temp';
+import Gallery from '../../../components/ui/gallery';
 
 import items from '../../../../config/sidebaritems.json';
 
@@ -19,11 +21,7 @@ class Root extends Component {
     render() {
         return (
             <Switch>
-                <PrivateRoute path="/gallery" render={(props) => (
-                    <div>
-                        bvhdvjh
-                    </div>
-                )}/>
+                <PrivateRoute path="/gallery" component={Gallery}/>
 
                 <AppRoute
                     path="/user"
@@ -34,7 +32,7 @@ class Root extends Component {
                     path="/temp"
                     permission={acl.canViewUsers()}
                    // componentprops={{tableHead: items.tableHead, tableBody: items.tableBody}}
-                    component={Table}
+                    component={Temp}
                 />
                 <PrivateRoute render={(props) => (
                     <div>
