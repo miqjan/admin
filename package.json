@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --config webpack.config.production.js",
     "start": "set NODE_ENV=development && webpack-dev-server --hot",
-    "start-prod": "set PORT=5000 && node server.js"
+    "start-prod": "set PORT=5000 && node server.js",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "axios": "^0.17.1",
