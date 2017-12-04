@@ -5,11 +5,14 @@
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.config.production.js",
-    "start": "set NODE_ENV=development && webpack-dev-server --hot"
+    "start": "set NODE_ENV=development && webpack-dev-server --hot",
+    "start-prod": "set PORT=5000 && node server.js"
   },
   "dependencies": {
     "axios": "^0.17.1",
     "classnames": "^2.2.5",
+    "express": "^4.16.2",
+    "heroku-ssl-redirect": "0.0.4",
     "history": "^4.7.2",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",

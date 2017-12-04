@@ -1,0 +1,17 @@
+{
+  "name": "slendeavor_admin",
+  "scripts": {
+  },
+  "env": {
+    
+  },
+  "formation": {
+  },
+  "addons": [
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
