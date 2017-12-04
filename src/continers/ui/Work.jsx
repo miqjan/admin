@@ -2,30 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-import config from '../../../config/index.json';
 import {BootstrapTable, TableHeaderColumn, InsertButton } from 'react-bootstrap-table';
 
-import {teamFetchData,teamAddData,teamEditData,teamDelateDatas} from '../../actions/team';
+import {workFetchData,workAddData,workEditData,workDelateDatas} from '../../actions/work';
 import jQuery from 'jquery';
 
-function carrntFormatter(cell, row, enumObject, index)
-{
-    return `<img height='30px' width="30px" src="${config.api_url}/images/${cell}"/>`;
-}
 
 
-
-
-class Table extends React.Component {
+class Work extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            teams:[],
+            work:[],
             images:[],
         };
     }
     handleInsertButtonClick = (onClick) => {
-    
+     
         onClick();
     }
     createCustomInsertButton = (onClick) => {
@@ -39,20 +32,20 @@ class Table extends React.Component {
         );
     }
     componentWillMount() {
-        this.props.teamFetchAll('team');
+        this.props.workFetchAll('work');
     }
     componentWillReceiveProps(nextprop) {
-        this.setState({teams:nextprop.teams,images:nextprop.images.images});
+        this.setState({work:nextprop.work});
     }
     onAfterDeleteRow(rowes){
-        this.props.teamDelateDatas('team/delate',rowes);
+        this.props.workDelateDatas('work/delate',rowes);
     }
     onAfterInsertRow(row){
-        this.props.teamAddData('team',row);
+        this.props.workAddData('work',row);
     }
     onAfterSaveCell(row, cellName, cellValue) {}
     onBeforeSaveCell(row, cellName, cellValue) {
-        this.props.teamEditData("team/edit",row);
+        this.props.workEditData("work/edit",row);
         return true;
     }
     render() {
@@ -72,30 +65,20 @@ class Table extends React.Component {
             beforeSaveCell: this.onBeforeSaveCell.bind(this), // a hook for before saving cell
             afterSaveCell: this.onAfterSaveCell.bind(this)  // a hook for after saving cell
         };
-        const jobTypes = this.state.images.map((image,index)=>{
-            return {
-                value: image,
-                text: image,
-            };
-        });
-        
-        
-        
         return ( 
             <div > 
-                <BootstrapTable data={this.state.teams}
+                <BootstrapTable data={this.state.work}
                 striped hover
                 selectRow={ selectRow }
                 cellEdit={ cellEditProp }
                 insertRow={ true }
                 deleteRow={ true }
                 options={ options }
-                
                 >
-                    <TableHeaderColumn isKey={true} autoValue={ true } hiddenOnInsert hidden  dataField='_id'>ID</TableHeaderColumn>
-                    <TableHeaderColumn dataField='img' dataFormat={ carrntFormatter } editable={ { type: 'select', options: { values: jobTypes }  } }>Img</TableHeaderColumn>
-                    <TableHeaderColumn dataField='name'>Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField='info'>Info</TableHeaderColumn>
+                    <TableHeaderColumn isKey={true} autoValue={ true } dataSort={ true } hiddenOnInsert hidden  dataField='_id'>ID</TableHeaderColumn>
+                    <TableHeaderColumn dataField='title'>Title</TableHeaderColumn>
+                    <TableHeaderColumn dataField='icon'>Icon</TableHeaderColumn>
+                    <TableHeaderColumn dataField='text'>Text</TableHeaderColumn>
                 </BootstrapTable>
             </div>
         )
@@ -104,28 +87,26 @@ class Table extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        teams: state.team.teams,
-        error: state.team.error,
-        images: state.images,
+        work: state.work.work,
+        error: state.work.error,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        teamFetchAll: (url) =>  dispatch ( teamFetchData( url)),
-        teamAddData: (url,data) => dispatch ( teamAddData( url,data)),
-        teamEditData: (url,data) => dispatch ( teamEditData( url,data)),
-        teamDelateDatas: (url,data_arr) => dispatch( teamDelateDatas( url,data_arr)),
+        workFetchAll: (url) =>  dispatch ( workFetchData( url)),
+        workAddData: (url,data) => dispatch ( workAddData( url,data)),
+        workEditData: (url,data) => dispatch ( workEditData( url,data)),
+        workDelateDatas: (url,data_arr) => dispatch( workDelateDatas( url,data_arr)),
     };
 };
 
-Table.propTypes = {
+Work.propTypes = {
     error: PropTypes.object,
-    teams: PropTypes.array,
-    teamFetchAll: PropTypes.func.isRequired,
-    teamAddData: PropTypes.func.isRequired,
-    teamEditData: PropTypes.func.isRequired,
-    teamDelateDatas: PropTypes.func.isRequired,
-    images: PropTypes.object,
+    work: PropTypes.array,
+    workFetchAll: PropTypes.func.isRequired,
+    workAddData: PropTypes.func.isRequired,
+    workEditData: PropTypes.func.isRequired,
+    workDelateDatas: PropTypes.func.isRequired,
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Work);

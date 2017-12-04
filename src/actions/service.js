@@ -1,30 +1,30 @@
 import {
-    TEAM_HAS_ERROR,
-    TEAM_GET_SUCCESS,
-} from '../constants/team';
+    SERVICE_HAS_ERROR,
+    SERVICE_GET_SUCCESS,
+} from '../constants/service';
 import axios from 'axios';
 import config from '../../config/index.json';
 
 axios.defaults.baseURL = config.api_url;
 
-export function getTeamHasError(error) {
+export function getserviceHasError(error) {
     return {
-        type: TEAM_HAS_ERROR,
+        type: SERVICE_HAS_ERROR,
         error
     };
 }
 
 
 
-export function getTeamSuccess(teams) {
+export function getserviceSuccess(service) {
     return {
-        type: TEAM_GET_SUCCESS,
-        teams
+        type: SERVICE_GET_SUCCESS,
+        service
     };
 }
 
 
-export function teamFetchData(url) {
+export function serviceFetchData(url) {
     return async(dispatch) => {
         try {
             let res = await axios.get(url, {
@@ -32,10 +32,9 @@ export function teamFetchData(url) {
                     'Authorization': window.localStorage.getItem('token')
                 }
             });
-            dispatch(getTeamSuccess(res.data));
+            dispatch(getserviceSuccess(res.data));
         } catch (error) {
-
-            dispatch(getTeamHasError({
+            dispatch(getserviceHasError({
                 status_text: error.response.statusText,
                 data: error.response.data.error,
                 status: error.response.status
@@ -43,7 +42,7 @@ export function teamFetchData(url) {
         } 
     };
 }
-export function teamAddData(url,data) {
+export function serviceAddData(url,data) {
     
     return async(dispatch) => {
         try {
@@ -53,10 +52,10 @@ export function teamAddData(url,data) {
                     'Authorization': window.localStorage.getItem('token')
                 }
             });
-            dispatch(getTeamSuccess(res.data));
+            dispatch(getserviceSuccess(res.data));
         } catch (error) {
 
-            dispatch(getTeamHasError({
+            dispatch(getserviceHasError({
                 status_text: error.response.statusText,
                 data: error.response.data.error,
                 status: error.response.status
@@ -64,7 +63,7 @@ export function teamAddData(url,data) {
         } 
     };
 }
-export function teamEditData(url,data) {
+export function serviceEditData(url,data) {
     
     return async(dispatch) => {
         try {
@@ -73,10 +72,10 @@ export function teamEditData(url,data) {
                     'Authorization': window.localStorage.getItem('token')
                 }
             });
-            dispatch(getTeamSuccess(res.data));
+            dispatch(getserviceSuccess(res.data));
         } catch (error) {
 
-            dispatch(getTeamHasError({
+            dispatch(getserviceHasError({
                 status_text: error.response.statusText,
                 data: error.response.data.error,
                 status: error.response.status
@@ -84,7 +83,7 @@ export function teamEditData(url,data) {
         } 
     };
 }
-export function teamDelateDatas(url,data_arr) {
+export function serviceDelateDatas(url,data_arr) {
     
     return async(dispatch) => {
         try {
@@ -93,10 +92,10 @@ export function teamDelateDatas(url,data_arr) {
                     'Authorization': window.localStorage.getItem('token')
                 }
             });
-            dispatch(getTeamSuccess(res.data));
+            dispatch(getserviceSuccess(res.data));
         } catch (error) {
 
-            dispatch(getTeamHasError({
+            dispatch(getserviceHasError({
                 status_text: error.response.statusText,
                 data: error.response.data.error,
                 status: error.response.status

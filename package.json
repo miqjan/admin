@@ -4,10 +4,8 @@
   "description": "React Redux Thunk ",
   "private": true,
   "scripts": {
-    "build": "nwb build-react-app",
-    "clean": "nwb clean-app",
-    "start": "set NODE_ENV=development && webpack-dev-server --hot",
-    "startnwb": "nwb serve-react-app"
+    "build": "webpack --config webpack.config.production.js",
+    "start": "set NODE_ENV=development && webpack-dev-server --hot"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -18,8 +16,9 @@
     "material-ui": "^0.19.4",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
-    "react-bootstrap-table": "^4.1.4",
+    "react-bootstrap-table": "^4.1.5",
     "react-dom": "^16.1.1",
+    "react-fontawesome": "^1.6.1",
     "react-images-upload": "^1.1.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",

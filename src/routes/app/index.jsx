@@ -10,6 +10,7 @@ import items from '../../../config/sidebaritems.json';
 
 import AppContent from '../../continers/AppContent';
 import { userFetchData } from '../../actions/user';
+import {getimages} from '../../actions/img_list';
 import sidebarItems from '../../../config/sidebaritems.json';
 
 import * as acl from '../../utils/acl';
@@ -20,6 +21,7 @@ class App extends Component {
     }
     componentWillMount() {
         this.props.fetchData('user/issignin');
+        this.props.getimages();
     }
     render(){
         if(this.props.loading_){   // loading not work becouse call fetchData brfore end 
@@ -55,7 +57,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (url) => { dispatch ( userFetchData( url ) ) }
+        fetchData: (url) => { dispatch ( userFetchData( url ) ) },
+        getimages: ()=>{dispatch ( getimages() )}
     };
 };
 

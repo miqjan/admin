@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import styles from './components.pcss';
 
-// import imgAvatar from '../../../../../public/img/admin_avatar.jpg';
+import imgAvatar from '../../../../../public/img/admin_avatar.jpg';
 
 class HeaderMenu extends React.Component {
   onLogout = () => {
@@ -15,7 +15,7 @@ class HeaderMenu extends React.Component {
     return(
       <div className={styles.root}>
         <ul>
-          <li><img src={''} alt="Admin"/></li>
+          <li><img src={imgAvatar} alt="Admin"/></li>
           <li>{this.props.adminName}</li>
           <li>
             <button type="button" onClick={this.onLogout}>Log Out</button>

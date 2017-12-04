@@ -1,0 +1,2 @@
+export const WORK_HAS_ERROR = 'WORK_HAS_ERROR';
+export const WORK_GET_SUCCESS = 'WORK_GET_SUCCESS';

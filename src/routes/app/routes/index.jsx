@@ -10,7 +10,11 @@ import AdminRoute from '../../../components/Routing/PrivateRoute/AdminRoute';
 
 import Table from '../../../continers/Table';
 import Temp from '../../../continers/ui/Temp';
-import Gallery from '../../../components/ui/gallery';
+import Gallery from '../../../continers/ui/Gallery';
+import Service from '../../../continers/ui/Service'
+import Gallery_images from '../../../components/ui/gallery';
+import Partner from '../../../continers/ui/Partner';
+import Work from '../../../continers/ui/Work';
 
 import items from '../../../../config/sidebaritems.json';
 
@@ -21,8 +25,13 @@ class Root extends Component {
     render() {
         return (
             <Switch>
-                <PrivateRoute path="/gallery" component={Gallery}/>
-
+                <PrivateRoute path="/gallery_images" component={Gallery_images}/>
+               
+                <AppRoute
+                    path="/partner"
+                    component={Partner}
+                    permission={acl.canViewUsers()}
+                />
                 <AppRoute
                     path="/user"
                     component={Table}
@@ -33,6 +42,24 @@ class Root extends Component {
                     permission={acl.canViewUsers()}
                    // componentprops={{tableHead: items.tableHead, tableBody: items.tableBody}}
                     component={Temp}
+                />
+                <AppRoute
+                    path="/gallery"
+                    permission={acl.canViewUsers()}
+                // componentprops={{tableHead: items.tableHead, tableBody: items.tableBody}}
+                    component={Gallery}
+                />
+                <AppRoute
+                    path="/service"
+                    permission={acl.canViewUsers()}
+                // componentprops={{tableHead: items.tableHead, tableBody: items.tableBody}}
+                    component={Service}
+                />
+                <AppRoute
+                    path="/work"
+                    permission={acl.canViewUsers()}
+                // componentprops={{tableHead: items.tableHead, tableBody: items.tableBody}}
+                    component={Work}
                 />
                 <PrivateRoute render={(props) => (
                     <div>

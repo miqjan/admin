@@ -2,8 +2,8 @@
   "array":[
     [
       {
-        "name":"Gallery",
-        "to":"gallery"
+        "name":"Gallery Images",
+        "to":"gallery_images"
       },
       {
         "name":"ggggggggggggg",
@@ -16,13 +16,30 @@
         "to":"user"
       },
       {
+        "name":"Gallery Images",
+        "to":"gallery_images"
+      },
+      {
+        "name":"Team",
+        "to":"temp"
+      },
+      {
         "name":"Gallery",
         "to":"gallery"
       },
       {
-        "name":"Temp",
-        "to":"temp"
+        "name":"Service",
+        "to":"service"
+      },
+      {
+        "name":"Work",
+        "to":"work"
+      },
+      {
+        "name":"Partner",
+        "to":"partner"
       }
+      
     ]
   ],
   "tableHead":[
