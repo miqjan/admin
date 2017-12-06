@@ -10,7 +10,7 @@ if(process.env.NODE_ENV === "production"){
 }
 
 app.use(express.static(path.join(__dirname,'static')));
-app.get("/", function(req, res) {
+app.get("*", function(req, res) {
   res.sendFile(__dirname + "static" + '/index.html');
 })
 
